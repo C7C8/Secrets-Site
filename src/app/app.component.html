@@ -7,17 +7,57 @@
 
     <h2>Motivation</h2>
     <p>We all know some secrets; some of them belong to us, some of them belong to others. It's difficult to
-      talk to someone about it if you aren't sure they know the same things, but you can't ask directly for
-      fear of sharing something you shouldn't.</p>
+      talk to someone about it if you aren't sure whether they know the same things, but you can't ask
+      directly for fear of sharing something you shouldn't.</p>
 
     <p>This site is designed to fix that, aimed at anyone who wants to talk about something
       confidential, help a mutual friend, or just get something off their chest. Using strong encryption,
       shared one-time keys, and a tiny bit of natural language processing, this site can act as an
       intermediary, for the sake of everyone's sanity.</p>
+
+    <h2>Instructions</h2>
+    <ol>
+      <li>Put your secret in the text box, then click "Submit new secret"</li>
+      <li>You will receive a 6-letter code; give it to your partner.</li>
+      <li>Your partner should write their secret in the text box and put the code you gave them in
+      the code box before submitting.</li>
+      <li>Click "Analyze secret" and provide your code to get your analysis. <b>You can only click this
+      button once!</b> To preserve your privacy, your secrets and code are deleted after analysis.</li>
+    </ol>
+
+    <br>
+    <i>App content here</i>
+
+    <h2>Writing good secrets</h2>
+
+    <p>Humans are very good at analyzing text, but machines aren't. To write good secrets that are easy
+    for this site to understand, here are some tips:</p>
+
+    <ul>
+      <li><b>Write short secrets.</b> Secret size isn't limited, but you might get a closer match than
+      you'd expect were it not for the extra words.</li>
+      <li><b>Use keywords and synonyms.</b> Your secrets are analyzed by keyword, so arrange with your
+      partner to use keywords. Provide synonyms, e.g. for "man" also give "male".</li>
+      <li><b>Use uncomplicated secrets.</b> This may be tricky to arrange with your partner, but it's
+      a good idea to put only <i>one</i> major piece of information in your secret.</li>
+      <li><b>Avoid proper nouns.</b> Proper nouns like names will be mistaken for keywords.</li>
+    </ul>
+
+    <h2>How it works</h2>
+
+    <p>Secrets are analyzed in different ways: absolute comparison, word overlap, and keyword overlap.
+    In the first case, your two secrets are simply compared for absolute equality, so even a missing
+    comma will throw it off. Word overlap is about how many words the two have in common, in any
+    order, e.g. "I am John" and "I am Jane" have an overlap of three, or 80% as there are five
+    distinct words. Finally, keyword overlap is the same procedure, but without "stop words", such
+    as "I", "a", "the", etc. For example, the two previous phrases become "john" and "jane",
+    respectively, with an overlap of 0%.</p>
+
+
   </div>
   <footer>
     <a href="https://ravana.dyn.wpi.edu"><img src="assets/gtva.png"></a>
-    <p (click)="sha1()">&quot;Let's make a deal... I'll spare you the ends-justify-the-means speech
-      and you'll spare me the we-must-do-what's-right speech.&quot;</p>
+    <p (click)="sha1()">"Let's make a deal... I'll spare you the ends-justify-the-means speech
+      and you'll spare me the we-must-do-what's-right speech."</p>
   </footer>
 </div>
