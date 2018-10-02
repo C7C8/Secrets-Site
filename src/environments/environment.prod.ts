@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  url: 'https://ravana.dyn.wpi.edu/api/secrets'
 };
