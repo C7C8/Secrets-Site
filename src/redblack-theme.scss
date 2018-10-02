@@ -1,0 +1,11 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+//Imported from past project, the style ended up looking good, so I kept it
+
+$rb-app-primary:    mat-palette($mat-red);
+$rb-app-secondary:  mat-palette($mat-blue-gray);
+$rb-app-warn:       mat-palette($mat-amber);
+$rb-app-theme:      mat-dark-theme($rb-app-primary, $rb-app-secondary, $rb-app-warn);
+
+@include angular-material-theme($rb-app-theme);

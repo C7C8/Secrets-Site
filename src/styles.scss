@@ -1,0 +1,39 @@
+@import './redblack-theme.scss';
+
+//Mostly imported from past project, with a few omissions. The stylesheet wasn't broken, so I opted not to fix it.
+
+html {
+  height: 100%;
+}
+
+body {
+  max-width: 50em;
+  height: 100%;
+  margin: 0 auto;
+  text-align: left;
+  line-height: 1.4;
+  font-family: Arial, sans-serif;
+  padding: 0 1em;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  line-height: 0.5;
+}
+
+p {
+  font-family: Arial, sans-serif;
+  margin-bottom: 0.5em;
+}
+
+a {
+  text-decoration: none;
+  color: #0088ff;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  font-size: 0.9em;
+}
+
