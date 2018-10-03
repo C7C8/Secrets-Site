@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   ]);
   keyControl = new FormControl('', [
     Validators.required,
-    Validators.pattern('[A-Z0-9]{6}')
+    Validators.pattern('[A-Za-z0-9]{12}')
   ]);
 
   secret: string;
@@ -37,12 +37,8 @@ export class AppComponent implements OnInit {
   new(): void {
     // Add a new secret
     const message: ApiMessage = { secret: this.secret };
-    console.log('Url:', environment.url);
     this.http.post<ApiResponse>(environment.url, message)
-      .pipe(catchError((error: HttpErrorResponse): Observable<ApiResponse> => {
-        console.log(error);
-        return of(error.error);
-      }))
+      .pipe(catchError((error: HttpErrorResponse): Observable<ApiResponse> => of(error.error)))
       .subscribe((response: ApiResponse) => {
 
         // Clear the user's secret, but only if the operation succeeded
@@ -59,10 +55,7 @@ export class AppComponent implements OnInit {
     // Add to existing secret
     const message: ApiMessage = { secret: this.secret, key: this.key };
     this.http.post<ApiResponse>(environment.url, message)
-      .pipe(catchError((error: HttpErrorResponse): Observable<ApiResponse> => {
-        console.log(error);
-        return of(error.error);
-      }))
+      .pipe(catchError((error: HttpErrorResponse): Observable<ApiResponse> => of(error.error)))
       .subscribe((response: ApiResponse) => {
         this.snackbar.open(response.message, '', {duration: 2500});
 
