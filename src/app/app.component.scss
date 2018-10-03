@@ -39,3 +39,28 @@ footer {
   }
 }
 
+button {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.secrets-form {
+  text-align: center;
+
+  mat-card {
+    text-align: left;
+    display: inline-block;
+
+    .center {
+      text-align: center; // There has got to be a better way of doing this...
+    }
+  }
+}
+
+#secret-field {
+  min-width: 100%;
+}
+
+#code-field {
+  width: 4em;
+}

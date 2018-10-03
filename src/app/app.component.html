@@ -15,18 +15,51 @@
       shared one-time keys, and a tiny bit of natural language processing, this site can act as an
       intermediary, for the sake of everyone's sanity.</p>
 
-    <h2>Instructions</h2>
-    <ol>
-      <li>Put your secret in the text box, then click "Submit new secret"</li>
-      <li>You will receive a 6-letter code; give it to your partner.</li>
-      <li>Your partner should write their secret in the text box and put the code you gave them in
-      the code box before submitting.</li>
-      <li>Click "Analyze secret" and provide your code to get your analysis. <b>You can only click this
-      button once!</b> To preserve your privacy, your secrets and code are deleted after analysis.</li>
-    </ol>
+    <div class="secrets-form">
+      <mat-card>
+          <mat-card-title>Submit/Analyze Secrets</mat-card-title>
+        <form>
+          <mat-form-field id="secret-field">
+            <input matInput placeholder="Secret"
+                   name="secret"
+                   id="secret"
+                   [formControl]="secretControl"
+                   [(ngModel)]="secret"
+                   required>
+          </mat-form-field>
+          <br>
+          <mat-form-field id="code-field">
+            <input matInput placeholder="Code"
+                   name="code"
+                   id="code"
+                   [formControl]="codeControl"
+                   [(ngModel)]="code">
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="add()"
+                  [disabled]="codeControl.errors || secretControl.errors">Add to secret with code</button>
+          <button mat-raised-button color="primary" (click)="new()"
+                  [disabled]="secretControl.errors || !codeControl.errors">Create new secret</button>
+          <br>
+          <div class="center">
+            <button mat-raised-button color="warn" (click)="anl()"
+                  [disabled]="codeControl.errors">Analyze secrets</button>
+          </div>
+        </form>
+      </mat-card>
+    </div>
 
-    <br>
-    <i>App content here</i>
+    <h2>Instructions</h2>
+    <p>This can be done on one computer or two, as long as you have a partner it doesn't matter. Make sure
+      to agree upon what you're discussing before submitting secrets!</p>
+
+    <ol>
+      <li>Write your secret in the "Secret" box and click "Create new secret".</li>
+      <li>You will be given a 6-character code. Give it to your partner.</li>
+      <li>Your partner should enter the code in the "Code" box, write their secret in the secret box, and click
+      "Add to secret with code"</li>
+      <li>Either partner can now enter the code in the box and press "Analyze secrets". <b>You can only do this
+        once!</b> To preserve your privacy, we delete your secrets immediately after analysis.</li>
+    </ol>
 
     <h2>Writing good secrets</h2>
 
@@ -57,7 +90,7 @@
   </div>
   <footer>
     <a href="https://ravana.dyn.wpi.edu"><img src="assets/gtva.png"></a>
-    <p (click)="sha1()">"Let's make a deal... I'll spare you the ends-justify-the-means speech
+    <p (click)="h()">"Let's make a deal... I'll spare you the ends-justify-the-means speech
       and you'll spare me the we-must-do-what's-right speech."</p>
   </footer>
 </div>

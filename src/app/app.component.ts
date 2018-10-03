@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog } from '@angular/material';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'secrets-root',
@@ -7,14 +8,34 @@ import { MatDialog, MatDialogRef } from '@angular/material';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  secretControl = new FormControl('', [
+    Validators.required
+  ]);
+  codeControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern('[A-Z0-9]{6}')
+  ]);
+
+  secret: string;
+  code: string;
 
   constructor(private dialog: MatDialog ) { }
 
   ngOnInit(): void {
   }
 
-  sha1(): void {
+  h(): void {
     this.dialog.open(HComponent);
+  }
+
+  new(): void {
+
+  }
+
+  add(): void {
+  }
+
+  anl(): void {
   }
 }
 
