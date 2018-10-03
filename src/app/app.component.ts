@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { FormControl, Validators } from '@angular/forms';
 import { environment } from '../environments/environment';
-import { ApiMessage, ApiResponse } from '../data';
+import { ApiDataAnalysis, ApiMessage, ApiResponse } from '../data';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ReceivedKeyComponent } from './received-key/received-key.component';
+import { SecretAnalysisComponent } from './secret-analysis/secret-analysis.component';
 
 @Component({
   selector: 'secrets-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   secretControl = new FormControl('', [
     Validators.required
   ]);
@@ -26,9 +27,6 @@ export class AppComponent implements OnInit {
   key: string;
 
   constructor(private dialog: MatDialog, private http: HttpClient, private snackbar: MatSnackBar ) { }
-
-  ngOnInit(): void {
-  }
 
   h(): void {
     this.dialog.open(HComponent);
@@ -59,11 +57,9 @@ export class AppComponent implements OnInit {
       .subscribe((response: ApiResponse) => {
         this.snackbar.open(response.message, '', {duration: 2500});
 
-        // Clear the form completely if the operation succeeded. If it didn't, assume a faulty key and only reset
-        // the key field.
+        // Clear the secret field if the operation succeeded. If it didn't, assume a faulty key and reset that field instead.
         if (response.status === 'success') {
           this.secretControl.reset();
-          this.keyControl.reset();
         } else {
           this.keyControl.reset();
         }
@@ -71,6 +67,23 @@ export class AppComponent implements OnInit {
   }
 
   anl(): void {
+    this.http.get<ApiDataAnalysis>(environment.url + '?key=' + this.key)
+      .pipe(catchError((error: HttpErrorResponse): Observable<ApiResponse> => of(error.error)))
+      .subscribe((response: ApiDataAnalysis) => {
+        if (response.status === 'success') {
+          this.dialog.open(SecretAnalysisComponent, {data: response});
+
+          this.http.delete<ApiResponse>(environment.url + '?key=' + this.key)
+            .pipe(catchError((error: HttpErrorResponse): Observable<ApiResponse> => of(error.error)))
+            .subscribe((resp: ApiResponse) => {
+              if (resp.status !== 'success') {
+                this.snackbar.open('Failed to delete secret: ' + resp.message);
+              }
+            });
+        } else {
+          this.snackbar.open(response.message, '', {duration: 2500});
+        }
+      });
   }
 }
 

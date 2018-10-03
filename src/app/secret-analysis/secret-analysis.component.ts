@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { ApiDataAnalysis } from '../../data';
 
 @Component({
   selector: 'secrets-secret-analysis',
   templateUrl: './secret-analysis.component.html',
-  styleUrls: ['./secret-analysis.component.css']
+  styleUrls: ['./secret-analysis.component.scss']
 })
-export class SecretAnalysisComponent implements OnInit {
+export class SecretAnalysisComponent {
 
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: ApiDataAnalysis, public ref: MatDialogRef<SecretAnalysisComponent>) { }
 
-  ngOnInit() {
+  close(): void {
+    this.ref.close();
   }
 
 }
