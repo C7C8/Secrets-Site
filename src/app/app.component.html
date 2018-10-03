@@ -73,7 +73,8 @@
       partner to use keywords. Provide synonyms, e.g. for "man" also give "male".</li>
       <li><b>Use uncomplicated secrets.</b> This may be tricky to arrange with your partner, but it's
       a good idea to put only <i>one</i> major piece of information in your secret.</li>
-      <li><b>Avoid proper nouns.</b> Proper nouns like names will be mistaken for keywords.</li>
+      <li><b>Avoid proper nouns and pronouns.</b> Proper nouns like names will be mistaken for keywords.</li>
+      <li><b>Don't use punctuation.</b>Punctuation can sometimes be interpreted as a key word.</li>
     </ul>
 
     <h2>How it works</h2>
@@ -86,6 +87,12 @@
     as "a", "the", etc. For example, the two previous phrases become "I john" and "I jane",
     respectively, with an overlap of 0%.</p>
 
+    <p><b><i>Warning: This gets technical.</i></b> For privacy's sake, your secrets are encrypted on the server until you
+      use them. The 12-character key generated for you is used as an encryption key for the secrets, using Fernet
+      encryption, or basically AES-128-CBC + HMAC-SHA-256. Since we still need to track your secrets for retrieval, we
+      use an effectively unsalted bcrypt hash of your key as an identifier -- roughly the same protection that good
+    password security offers, except for technical reasons the salt has to be constant. In effect, your secrets are
+    completely unreadable to the server until you provide the key.</p>
 
   </div>
   <footer>
