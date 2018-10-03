@@ -6,6 +6,7 @@ export class ApiMessage {
 export class ApiResponse {
   status: string;
   message: string;
+  key?: string;
 }
 
 export class ApiDataAnalysis extends ApiResponse {

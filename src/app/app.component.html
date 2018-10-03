@@ -28,21 +28,21 @@
                    required>
           </mat-form-field>
           <br>
-          <mat-form-field id="code-field">
-            <input matInput placeholder="Code"
-                   name="code"
-                   id="code"
-                   [formControl]="codeControl"
-                   [(ngModel)]="code">
+          <mat-form-field id="key-field">
+            <input matInput placeholder="Key"
+                   name="key"
+                   id="key"
+                   [formControl]="keyControl"
+                   [(ngModel)]="key">
           </mat-form-field>
           <button mat-raised-button color="primary" (click)="add()"
-                  [disabled]="codeControl.errors || secretControl.errors">Add to secret with code</button>
+                  [disabled]="keyControl.errors || secretControl.errors">Add to secret with key</button>
           <button mat-raised-button color="primary" (click)="new()"
-                  [disabled]="secretControl.errors || !codeControl.errors">Create new secret</button>
+                  [disabled]="secretControl.errors || !keyControl.errors">Create new secret</button>
           <br>
           <div class="center">
             <button mat-raised-button color="warn" (click)="anl()"
-                  [disabled]="codeControl.errors">Analyze secrets</button>
+                  [disabled]="keyControl.errors">Analyze secrets</button>
           </div>
         </form>
       </mat-card>
@@ -54,10 +54,10 @@
 
     <ol>
       <li>Write your secret in the "Secret" box and click "Create new secret".</li>
-      <li>You will be given a 6-character code. Give it to your partner.</li>
-      <li>Your partner should enter the code in the "Code" box, write their secret in the secret box, and click
-      "Add to secret with code"</li>
-      <li>Either partner can now enter the code in the box and press "Analyze secrets". <b>You can only do this
+      <li>You will be given a 6-character key. Give it to your partner.</li>
+      <li>Your partner should enter the key in the "Key" box, write their secret in the secret box, and click
+      "Add to secret with key"</li>
+      <li>Either partner can now enter the key in the box and press "Analyze secrets". <b>You can only do this
         once!</b> To preserve your privacy, we delete your secrets immediately after analysis.</li>
     </ol>
 
