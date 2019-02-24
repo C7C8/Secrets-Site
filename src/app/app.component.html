@@ -42,7 +42,7 @@
           <br>
           <div class="center">
             <button mat-raised-button color="warn" (click)="anl()"
-                  [disabled]="keyControl.errors">Analyze secrets</button>
+                  [disabled]="keyControl.errors || !secretControl.errors">Analyze secrets</button>
           </div>
         </form>
       </mat-card>
